@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQ Accordion</title>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+      body {
+        background-color: whitesmoke;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'Roboto';
+      }
+      h1 {
+        color: #000000c0;
+        text-align: center;
+        margin: 1rem;
+      }
+      .faq-item {
+        width: 50vw;
+        min-width: width 340px;
+        margin: 1rem;
+      }
+      .item-question {
+        background-color: #000000c0;
+        color: whitesmoke;
+        font-size: 1.2rem;
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .item-answer {
+        display: none;
+        background-color: #00000070;
+        padding: 2rem;
+        color: whitesmoke;
+      }
+      .close {
+        display: none;
+      }
+      .show-answer .item-answer {
+        display: block;
+      }
+      .show-answer .close {
+        display: inline;
+      }
+      .show-answer .expand {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Frequently Asked Questions</h1>
+    <div id="faqs-container"></div>
+
+    <script>
+      const faqData = [
+        {
+          question: 'Overview of all hacking Terminals',
+          answer: `
+          
+Planet/Moon > Location<br>
+Calliope > Shubin SPMC-1<br>
+Cellin > Security Outpost Kareah<br>
+Hurston > Security Depot Hurston-1<br>
+Lyria > Security Depot<br>
+Microtech > DataCenter (LV) 4HJ-LVE-A<br>
+Microtech > SecurityCenter DDV-6<br>
+          
+          `,
+        },
+        {
+          question: 'Derelict Puzzle Wrecks',
+          answer: `
+          
+          MicroTech<br>
+[Calliope]   [X]:  199.393 [Y]: -126.182 [Z]:   45.983  [Closest QT Marker] "Shubin SPMC-14"     [Distance]  "111.8km" [Bearing] "260°"<br>
+
+<br>Hurston<br>
+[Arial]      [X]:   21.290 [Y]: -234.274 [Z]:  252.404  [Closest QT Marker] "HDMS-Bezdek"        [Distance]    "5.5km" [Bearing] "284°"<br>
+[Aberdeen]   [X]: -160.520 [Y]:  187.065 [Z]:  122.157  [Closest QT Marker] "HDMS Norgaard"      [Distance]   "22.9km" [Bearing] "118°"<br>
+[Magda]      [X]: -171.923 [Y]: -278.139 [Z]:   96.953  [Closest QT Marker] "HDMS Hahn"          [Distance]   "28.3km" [Bearing] "274°" <br>
+[Magda]      [X]:  -84.944 [Y]: -284.415 [Z]:  168.126  [Closest QT Marker] "HDMS Hahn"          [Distance]   "96.3km" [Bearing] "033°"<br>
+[Ita]        [X]:  137.997 [Y]:  211.437 [Z]:  204.970  [Closest QT Marker] "HDMS Woodruff"      [Distance]   "25.2km" [Bearing] "255°"<br>
+
+<br>ArcCorp<br>
+[Lyria]      [X]:   90.196 [Y]:   60.433 [Z]:  196.272  [Closest QT Marker] "Shubin SAL 5"       [Distance]   "22.2km" [Bearing] "336°"<br>
+[Lyria]      [X]:  143.507 [Y]:  -71.508 [Z]:  156.466  [Closest QT Marker] "Shubin SAL 2"       [Distance]   "19.3km" [Bearing] "271°"<br>
+[Wala]       [X]: -281.801 [Y]:   10.547 [Z]:  -22.472  [Closest QT Marker] "ArCorp Mining 45"   [Distance]   "33.3km" [Bearing] "174°"<br>
+[Wala]       [X]: -164.031 [Y]:   85.551 [Z]: -213.830  [Closest QT Marker] "ArcCorp Mining 48"  [Distance]   "25.6km" [Bearing] "171°"<br>
+
+<br>Crusader<br>
+[Cellin]     [X]:  112.178 [Y]: -163.730 [Z]:  169.625  [Closest QT Marker] "Private Property"   [Distance]    "18km" [Bearing] "080°"<br>
+[Yela]       [X]:  -29.543 [Y]:  236.610 [Z]:  203.199  [Closest QT Marker] "ArcCorp Mining 157" [Distance]    "42km" [Bearing] "121°"<br>
+
+`,
+        },
+        {
+          question: 'Microtech River',
+          answer: 'Answer goes here.',
+        },
+      ];
+
+      const faqsContainer = document.getElementById('faqs-container');
+
+      faqData.map(function (item) {
+        let article = document.createElement('article');
+        article.className = 'faq-item';
+
+        const markup = `
+        <div class="item-question">
+          <span class="question-text">${item.question}</span>
+          <span class="arrows-container">
+            <span class="expand">▲</span>
+            <span class="close">▼</span>
+            </span>
+          </div>
+        <div class="item-answer">
+          <span class="answer-test">${item.answer}</span>
+
+            </div>
+        `;
+
+        article.innerHTML = markup;
+        faqsContainer.append(article);
+      });
+
+      const arrowsContainer = document.querySelectorAll('.arrows-container');
+
+      arrowsContainer.forEach(function (item) {
+        item.addEventListener('click', function (e) {
+          const parent = e.currentTarget.parentElement.parentElement;
+          parent.classList.toggle('show-answer');
+        });
+      });
+    </script>
+  </body>
+</html>
